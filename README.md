@@ -9,22 +9,25 @@ Related issue in Sass: https://github.com/sass/sass/issues/1361
 Example:
 
 ```scss
+// Specify how relative URLs should be processed:
 $relative-url-fn: asset-path;
-@function asset-path($path) {
-  @return "/assets/#{$path}";
-}
+@function asset-path($path) { @return "/assets/#{$path}"; }
+
+// Import the library
 @import "relative-url";
 
+
+// Now you can use regular url("") and it will be processed if it is relative:
 .logo {
   // Relative paths are processed with $relative-url-fn:
   background-image: url("logo.png");
   //=> background-image: url(/assets/logo.png);
 
-  // Absolute paths are not:
+  // Absolute paths are not processed:
   background-image: url("http://google.com/image.jpg")
   //=> background-image: url(http://google.com/image.jpg);
 
-  // Unquoted quoteds in url() are not affected either, though I wish we could change this:
+  // Sadly, unquoted strings do not work:
   background-image: url(logo.png);
   //=> background-image: url(logo.png);
 }
@@ -35,7 +38,11 @@ Experimental integration for Compass:
 ```scss
 @import "relative-url/integrations/compass"
 @import "relative-url"
+
 // From now just use `url("")`!
+a {
+ background-image: url("logo.png");
+}
 ```
 
 Experimental integration for Sprockets:
@@ -43,7 +50,11 @@ Experimental integration for Sprockets:
 ```scss
 @import "relative-url/integrations/sprockets"
 @import "relative-url"
+
 // From now just use `url("")`!
+a {
+ background-image: url("logo.png");
+}
 ```
 
 ## Why?
