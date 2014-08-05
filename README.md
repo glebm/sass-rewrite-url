@@ -36,10 +36,10 @@ $relative-url-fn: asset-path;
 Experimental integration for Compass:
 
 ```scss
-@import "relative-url/integrations/compass"
-@import "relative-url"
+@import "relative-url/integrations/compass";
+@import "relative-url";
 
-// From now just use `url("")`!
+// From now just use url instead of image/font-url
 a {
  background-image: url("logo.png");
 }
@@ -48,10 +48,10 @@ a {
 Experimental integration for Sprockets:
 
 ```scss
-@import "relative-url/integrations/sprockets"
-@import "relative-url"
+@import "relative-url/integrations/sprockets";
+@import "relative-url";
 
-// From now just use `url("")`!
+// From now just use url  instead of asset-url!
 a {
  background-image: url("logo.png");
 }
