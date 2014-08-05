@@ -1,0 +1,20 @@
+$relative-url-fn: relative-url-noop !default;
+// @debug "relative-url: activated with #{$relative-url-fn}";
+
+@function url($path) {
+  @if not url-is-absolute($path) {
+    // $path-was: $path;
+    $path: call($relative-url-fn, $path);
+    // @debug "relative-url: #{$path-was} -> #{$path}";
+  }
+  @return "url(#{$path})";
+}
+
+@function url-is-absolute($path) {
+  @return str-index($path, '//') != null;
+}
+
+@function relative-url-noop($path) {
+  @return $path;
+}
+

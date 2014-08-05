@@ -1,0 +1,23 @@
+$relative-url-fn: append-transformed;
+
+@function append-transformed($path) {
+  @return "#{$path}/transformed";
+}
+
+@import '../relative-url';
+
+pre {
+  background-image: url("quoted");
+}
+
+pre {
+  background-image: url(unquoted);
+}
+
+a {
+  background-image: url("http://foo.com/quoted.jpg");
+}
+
+a {
+  background-image: url(http://foo.com/unquoted.jpg);
+}

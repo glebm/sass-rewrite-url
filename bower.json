@@ -1,0 +1,21 @@
+{
+  "name": "sass-relative-url",
+  "version": "0.0.0",
+  "authors": [
+    "Gleb Mazovetskiy <glex.spb@gmail.com>"
+  ],
+  "description": "Replace relative paths in url() calls",
+  "main": "_relative-url.sass",
+  "keywords": [
+    "sass"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/glebm/sass_relative_url",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

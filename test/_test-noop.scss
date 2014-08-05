@@ -1,0 +1,9 @@
+@import "../relative-url";
+
+a {
+  background-image: url("quoted.jpg");
+  background-image: url(unquoted.jpg);
+  background-image: url("http://foo.com/quoted.jpg");
+  background-image: url(http://foo.com/unquoted.jpg);
+}
+
