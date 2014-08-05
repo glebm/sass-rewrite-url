@@ -1,0 +1,16 @@
+// Mock Sprockets asset-path helper
+@function asset-path($path) {
+  @return "/assets/#{$path}";
+}
+
+@import '../sass/relative-url/integrations/sprockets';
+@import '../sass/relative-url';
+
+.logo {
+  background-image: url("logo.png");
+}
+
+@font-face {
+  font-family: Font;
+  src: url("font.woff") woff;
+}

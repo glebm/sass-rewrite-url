@@ -4,7 +4,7 @@ $relative-url-fn: append-transformed;
   @return "#{$path}/transformed";
 }
 
-@import '../relative-url';
+@import '../sass/relative-url';
 
 pre {
   background-image: url("quoted");

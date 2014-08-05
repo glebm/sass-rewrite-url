@@ -17,35 +17,49 @@ function ok {
   echo -n '.'
 }
 
-function test_presence {
-  if grep -q $1 <<< $2; then
+function assert_css_contains {
+  if grep -q $1 <<< $CSS; then
     ok
   else
-    fail "expected ${1}"
+    fail "expected CSS compiled from ${SASS_PATH} to contain ${1}"
   fi
 }
 
+function with_sass {
+  SASS_PATH=$1
+  CSS=$(sass $SASS_PATH)
+}
 # Actual tests
 
-CALL_CSS=$(sass test/_test-call.scss)
-test_presence 'url(http://foo.com/quoted.jpg)' "$CALL_CSS"
-test_presence 'url(http://foo.com/unquoted.jpg)'
-test_presence 'url(quoted/transformed)' "$CALL_CSS"
-test_presence 'url(unquoted/transformed)' "$CALL_CSS"
+# Test call conditions
+with_sass test/_test-call.scss
+assert_css_contains 'url(http://foo.com/quoted.jpg)'
+assert_css_contains 'url(http://foo.com/unquoted.jpg)'
+assert_css_contains 'url(quoted/transformed)'
+assert_css_contains 'url(unquoted/transformed)'
 
-NOOP_CSS=$(sass test/_test-noop.scss)
-test_presence 'url(quoted.jpg)' "$NOOP_CSS"
-test_presence 'url(http://foo.com/quoted.jpg)' "$NOOP_CSS"
-test_presence 'url(http://foo.com/unquoted.jpg)' "$NOOP_CSS"
+# Test default no-op behaviour
+with_sass test/_test-noop.scss
+assert_css_contains 'url(quoted.jpg)'
+assert_css_contains 'url(http://foo.com/quoted.jpg)'
+assert_css_contains 'url(http://foo.com/unquoted.jpg)'
 
+# Test Compass integration
+with_sass test/_test-compass.scss
+assert_css_contains 'url(/images/logo.png)'
+assert_css_contains 'url(/fonts/font.woff)'
+
+# Test Sprockets integration
+with_sass test/_test-sprockets.scss
+assert_css_contains 'url(/assets/logo.png)'
+assert_css_contains 'url(/assets/font.woff)'
 
 # Display results
-
 echo
 if [ $FAILED -gt 0 ]; then
-  echo "❌  ${FAILED} failed. ${PASSED} passed"
+  echo "❌  ${FAILED} failed. ${PASSED} passed."
   exit 1
 else
-  echo "✔ ${PASSED} passed"
+  echo "✔ All ${PASSED} passed."
 fi
 

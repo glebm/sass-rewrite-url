@@ -1,0 +1,19 @@
+// Mock compass url helpers, expect $only-path: true
+@function image-url($path, $only-path: false) {
+  @return "/images/#{$path}";
+}
+@function font-url($path, $only-path: false) {
+  @return "/fonts/#{$path}";
+}
+
+@import '../sass/relative-url/integrations/compass';
+@import '../sass/relative-url';
+
+.logo {
+  background-image: url("logo.png");
+}
+
+@font-face {
+  font-family: Font;
+  src: url("font.woff") woff;
+}

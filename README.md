@@ -9,12 +9,11 @@ Related issue in Sass: https://github.com/sass/sass/issues/1361
 Example:
 
 ```scss
+$relative-url-fn: asset-path;
 @function asset-path($path) {
   @return "/assets/#{$path}";
 }
-
-$relative-url-fn: asset-path;
-@import "relative-urls";
+@import "relative-url";
 
 .logo {
   // Relative paths are processed with $relative-url-fn:
@@ -29,6 +28,22 @@ $relative-url-fn: asset-path;
   background-image: url(logo.png);
   //=> background-image: url(logo.png);
 }
+```
+
+Experimental integration for Compass:
+
+```scss
+@import "relative-url/integrations/compass"
+@import "relative-url"
+// From now just use `url("")`!
+```
+
+Experimental integration for Sprockets:
+
+```scss
+@import "relative-url/integrations/sprockets"
+@import "relative-url"
+// From now just use `url("")`!
 ```
 
 ## Why?

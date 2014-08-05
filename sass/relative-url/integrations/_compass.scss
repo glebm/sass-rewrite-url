@@ -1,0 +1,36 @@
+$relative-url-fn: asset-path !default;
+
+// Compass doesn't have asset-path, only specific functions, such as font-url and image-url.
+// Define our own
+@function asset-path($path) {
+  $type: asset-type-from-path($path);
+  @return call("#{$type}-url", $path, true);
+}
+
+// Crude asset type detection
+$asset-ext-types: (
+  webp: image,
+  gif:  image,
+  png:  image,
+  jpg:  image,
+  ico:  image,
+  eot:  font ,
+  svg:  font , // !
+  ttf:  font ,
+  woff: font
+);
+// Maintaining a map is prone to breaking (e.g. svg could be an image),
+// Need another approach, or native support from Compass (like Sprockets does)
+
+@function asset-type-from-path($path) {
+  @each $ext, $type in $asset-ext-types {
+    @if asset-path-has-extname($path, $ext) {
+      @return $type;
+    }
+  }
+  @return image;
+}
+
+@function asset-path-has-extname($path, $ext) {
+  @return ".#{$ext}" == str-slice($path, - str-length($ext) - 1);
+}

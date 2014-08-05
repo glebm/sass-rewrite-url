@@ -1,11 +1,9 @@
 $relative-url-fn: relative-url-noop !default;
-// @debug "relative-url: activated with #{$relative-url-fn}";
 
+// Redefine url to process relative paths with $relative-url-fn
 @function url($path) {
   @if not url-is-absolute($path) {
-    // $path-was: $path;
     $path: call($relative-url-fn, $path);
-    // @debug "relative-url: #{$path-was} -> #{$path}";
   }
   @return "url(#{$path})";
 }

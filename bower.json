@@ -5,7 +5,7 @@
     "Gleb Mazovetskiy <glex.spb@gmail.com>"
   ],
   "description": "Replace relative paths in url() calls",
-  "main": "_relative-url.sass",
+  "main": "test/_relative-url.sass",
   "keywords": [
     "sass"
   ],
