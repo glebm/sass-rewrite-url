@@ -1,6 +1,6 @@
 # relative-url
 
-This is an experimental plugin for Sass 3.3+. It will replace relative paths in CSS url() calls with a function result.
+This is an experimental plugin for Sass 3.3+. It processes relative paths in `url()` values.
 
 Related issue in Sass: https://github.com/sass/sass/issues/1361
 
