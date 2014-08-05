@@ -59,8 +59,7 @@ a {
 
 ## Why?
 
-This is an attempt at resolving the mess that asset helper methods are.
-Every environment, such as Compass or Sprockets, defines its own `asset-path` / `image-url` helper methods that are meant to be used like so:
+Many Sass environment, such as Compass or Sprockets, define helpers to be used instead of `url`:
 
 ```scss
 .logo {
@@ -68,8 +67,7 @@ Every environment, such as Compass or Sprockets, defines its own `asset-path` / 
 }
 ```
 
-Unfortunately, this means there is no way for libraries to reference assets in a compatible way.
-This also means the user has to go through hoops if the Sass library they are using uses different asset URL helpers, or no helpers at all.
+This makes it difficult to write Sass code compatible with all the environments (e.g. a library).
 
 ## How?
 
