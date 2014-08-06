@@ -3,8 +3,8 @@
   @return "/assets/#{$path}";
 }
 
-@import '../sass/rewrite-url/integrations/sprockets';
 @import '../sass/rewrite-url';
+@import '../sass/rewrite-url/integrations/sprockets';
 
 .logo {
   background-image: url("logo.png");

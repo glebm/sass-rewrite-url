@@ -1,4 +1,4 @@
-$rewrite-url-relative: rewrite-url-compass-asset-path !default;
+$rewrite-url-relative: rewrite-url-compass-asset-path;
 
 // Compass doesn't have asset-path, only specific functions, such as font-url and image-url.
 // Define our own
