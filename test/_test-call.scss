@@ -1,10 +1,11 @@
-$relative-url-fn: append-transformed;
+@import '../sass/rewrite-url';
+
+$rewrite-url-relative: append-transformed;
 
 @function append-transformed($path) {
   @return "#{$path}/transformed";
 }
 
-@import '../sass/relative-url';
 
 pre {
   background-image: url("quoted");

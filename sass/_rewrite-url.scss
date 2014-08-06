@@ -1,0 +1,18 @@
+$rewrite-url-relative: rewrite-url-none !default;
+$rewrite-url-absolute: rewrite-url-none !default;
+
+// Redefine url to process relative paths with $rewrite-url-relative
+@function url($path) {
+  $path: if(url-is-absolute($path), call($rewrite-url-absolute, $path), call($rewrite-url-relative, $path));
+  @return unquote("url(#{$path})");
+}
+
+// scheme-relative URLs (starting with //) treated as absolute
+@function url-is-absolute($path) {
+  @return str-index($path, '://') != null or str-slice($path, 0, 2) == '//';
+}
+
+@function rewrite-url-none($path) {
+  @return $path;
+}
+

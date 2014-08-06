@@ -1,16 +1,16 @@
 {
-  "name": "sass-relative-url",
+  "name": "sass-rewrite-url",
   "version": "0.0.0",
   "authors": [
     "Gleb Mazovetskiy <glex.spb@gmail.com>"
   ],
   "description": "Replace relative paths in url() calls",
-  "main": "test/_relative-url.sass",
+  "main": "test/_rewrite-url.sass",
   "keywords": [
     "sass"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/glebm/sass_relative_url",
+  "homepage": "https://github.com/glebm/sass-rewrite-url",
   "ignore": [
     "**/.*",
     "node_modules",

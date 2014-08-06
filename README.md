@@ -1,6 +1,6 @@
-# relative-url
+# rewrite-url
 
-This is an experimental plugin for Sass 3.3+. It processes relative paths in `url()` values.
+This is an experimental plugin for Sass 3.3+, allows rewriting paths in `url()` values.
 
 Related issue in Sass: https://github.com/sass/sass/issues/1361
 
@@ -9,49 +9,50 @@ Related issue in Sass: https://github.com/sass/sass/issues/1361
 Example:
 
 ```scss
-// Specify how relative URLs should be processed:
-$relative-url-fn: asset-path;
-@function asset-path($path) { @return "/assets/#{$path}"; }
+@import "rewrite-url";
 
-// Import the library
-@import "relative-url";
-
+// set $rewrite-url-relative to process relative paths:
+$rewrite-url-relative: asset-path;
+@function asset-path($path) {
+  @return "/assets/#{$path}";
+}
 
 // Now you can use regular url("") and it will be processed if it is relative:
 .logo {
-  // Relative paths are processed with $relative-url-fn:
-  background-image: url("logo.png");
-  //=> background-image: url(/assets/logo.png);
+  background-image: url("logo.png"); //=> url(/assets/logo.png);
+}
 
-  // Absolute paths are not processed:
-  background-image: url("http://google.com/image.jpg")
-  //=> background-image: url(http://google.com/image.jpg);
+// Disable processing
+$rewrite-url-relative: rewrite-url-none;
+.logo {
+  background-image: url("logo.png"); //=> url(logo.png);
+}
 
-  // Sadly, unquoted strings do not work:
-  background-image: url(logo.png);
-  //=> background-image: url(logo.png);
+// Unquoted strings do not work (yet?):
+.logo {
+  background-image: url(logo.png); //=> url(logo.png);
 }
 ```
 
-Experimental integration for Compass:
+Sprockets integration:
 
 ```scss
-@import "relative-url/integrations/compass";
-@import "relative-url";
+@import "rewrite-url";
+@import "rewrite-url/integrations/sprockets";
 
-// From now just use url instead of image/font-url
+// From now just use url  instead of asset-url!
 a {
  background-image: url("logo.png");
 }
 ```
 
-Experimental integration for Sprockets:
+Experimental integration for Compass, it works by delegating to `image-url` or `font-url` depending on the extension:
 
 ```scss
-@import "relative-url/integrations/sprockets";
-@import "relative-url";
+@import "rewrite-url/integrations/compass";
+@import "rewrite-url";
 
-// From now just use url  instead of asset-url!
+// From now just use url instead of image/font-url
 a {
  background-image: url("logo.png");
 }

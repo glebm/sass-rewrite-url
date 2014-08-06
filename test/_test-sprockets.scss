@@ -3,8 +3,8 @@
   @return "/assets/#{$path}";
 }
 
-@import '../sass/relative-url/integrations/sprockets';
-@import '../sass/relative-url';
+@import '../sass/rewrite-url/integrations/sprockets';
+@import '../sass/rewrite-url';
 
 .logo {
   background-image: url("logo.png");
@@ -12,5 +12,5 @@
 
 @font-face {
   font-family: Font;
-  src: url("font.woff") woff;
+  src: url("font.woff") format('woff');
 }

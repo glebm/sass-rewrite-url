@@ -6,8 +6,8 @@
   @return "/fonts/#{$path}";
 }
 
-@import '../sass/relative-url/integrations/compass';
-@import '../sass/relative-url';
+@import '../sass/rewrite-url/integrations/compass';
+@import '../sass/rewrite-url';
 
 .logo {
   background-image: url("logo.png");
@@ -15,5 +15,5 @@
 
 @font-face {
   font-family: Font;
-  src: url("font.woff") woff;
+  src: url("font.woff") format('woff');
 }
