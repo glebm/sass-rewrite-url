@@ -4,6 +4,8 @@ This is an experimental plugin for Sass 3.3+, allows rewriting paths in `url()` 
 
 Related issue in Sass: https://github.com/sass/sass/issues/1361
 
+**Do not use this. Overriding `url` is deprecated and will be removed from future versions of Sass.**
+
 ## What?
 
 Example:
